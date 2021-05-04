@@ -85,6 +85,24 @@ map <S-k> 5k
 map <S-h> b
 map <S-l> w
 
+" Search in directory
+map <leader>ff :Files<space>
+map <leader>gf :GFiles<cr>
+map <leader>gs :GFiles?<cr>
+map <leader>hh :History<cr>
+map <leader>ll :Lines<cr>
+map <leader>gd :Gdiff<cr>
+
+" Fuzzy search
+map <leader>rg :Rg<cr>
+
+" Handle tab behavior
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+inoremap <S-Tab> <C-d>
+nnoremap <S-Tab> <<
+nnoremap <Tab> >>
+
 " Set terminals to split below and right
 set splitbelow
 set splitright
