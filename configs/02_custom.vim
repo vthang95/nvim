@@ -12,7 +12,7 @@ set updatetime=100
 
 set list listchars=tab:▸\ ,eol:$,trail:·
 highlight SpecialKey ctermfg=red guifg=#ff0000
-highlight NonText guifg=#d9d9d9
+highlight NonText guifg=#565656
 
 " Enable true colors support
 if (has("termguicolors"))
@@ -103,6 +103,8 @@ inoremap <S-Tab> <C-d>
 nnoremap <S-Tab> <<
 nnoremap <Tab> >>
 
+map <leader>fh :BTags<cr>
+
 " Set terminals to split below and right
 set splitbelow
 set splitright
@@ -110,3 +112,19 @@ set splitright
 " Settings for Coc
 hi CocErrorLine guifg=#000000 guibg=#D25972
 hi CocWarningLine guifg=#000000 guibg=#CBAC62
+
+function SetColorschemeForElixir()
+  colorscheme base16-google-dark
+  highlight NonText guifg=#333333
+endfunction
+
+function SetColorschemeForJsTs()
+  colorscheme palenight
+  highlight NonText guifg=#565656
+endfunction
+
+" Use nested to avoiding bugs with vim-airlines
+autocmd BufEnter *.ex ++nested call SetColorschemeForElixir()
+autocmd BufEnter *.exs ++nested call SetColorschemeForElixir()
+autocmd BufEnter *.js* ++nested call SetColorschemeForJsTs()
+autocmd BufEnter *.ts* ++nested call SetColorschemeForJsTs()

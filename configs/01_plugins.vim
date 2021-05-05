@@ -1,24 +1,51 @@
 call plug#begin('~/.config/nvim/plugins')
 
+" Common plugs
+Plug 'vim-airline/vim-airline'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'pangloss/vim-javascript'
-Plug 'ervandew/supertab'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'build': './install --all', 'merged': 0 }
 Plug 'junegunn/fzf.vim', { 'depends': 'fzf' }
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ervandew/supertab'
+Plug 'chriskempson/base16-vim'
+
+" Elixir plugs
+Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
+" Js/Ts plugs
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
 let mapleader = " "
+
+" Settings for vim mix format
+let g:mix_format_on_save = 1
+
+" Settings for Vim Airline
+let g:airline_powerline_fonts = 1
+set hidden
+let g:Powerline_symbols = 'fancy'
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_theme='onedark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
 
 " Settings for NERDTree
 let NERDTreeIgnore = ['\.beam$']
@@ -26,19 +53,6 @@ let NERDTreeAutoDeleteBuffer = 1 " Auto delete buffer when files/folders are del
 let NERDTreeQuitOnOpen = 1 " Auto close NERDTree when open a file
 let NERDTreeMinimalUI = 1
 map <leader>\ :NERDTreeToggle<CR>
-
-" Settings for Airline
-let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_theme='ayu_dark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
 
 " Settings for Coc
 " show hints/documentations
@@ -70,4 +84,5 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
-
+" Settings for gutentags
+set statusline+=%{gutentags#statusline()}
