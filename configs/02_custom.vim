@@ -9,10 +9,11 @@ set autoread
 set hlsearch " Highlight search
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set updatetime=100
+set colorcolumn=100
 
 set list listchars=tab:▸\ ,eol:$,trail:·
 highlight SpecialKey ctermfg=red guifg=#ff0000
-highlight NonText guifg=#565656
+highlight NonText guifg=#505050
 
 " Enable true colors support
 if (has("termguicolors"))
@@ -123,8 +124,14 @@ function SetColorschemeForJsTs()
   highlight NonText guifg=#565656
 endfunction
 
-" Use nested to avoiding bugs with vim-airlines
+" Use nested for avoiding bugs caused by vim-airlines
 autocmd BufEnter *.ex ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.exs ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.js* ++nested call SetColorschemeForJsTs()
 autocmd BufEnter *.ts* ++nested call SetColorschemeForJsTs()
+
+" Highlight trailing character
+" https://vim.fandom.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red guifg=white
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/

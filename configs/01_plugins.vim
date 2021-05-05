@@ -48,7 +48,7 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
 " Settings for NERDTree
-let NERDTreeIgnore = ['\.beam$']
+let NERDTreeIgnore = ['\.beam$', '_build', 'node_modules']
 let NERDTreeAutoDeleteBuffer = 1 " Auto delete buffer when files/folders are deleted by NERDTree
 let NERDTreeQuitOnOpen = 1 " Auto close NERDTree when open a file
 let NERDTreeMinimalUI = 1
@@ -66,7 +66,15 @@ if empty($SSH_CONNECTION) && has('clipboard')
  endif
 endif
 
-" Setup for ripgrep
+" Setup for ripgrep, fzf
+" To show preview in fashion way, you need to install bat - a cat alternative
+" programe
+let $FZF_DEFAULT_OPTS='
+            \ --color=fg:#9CA3AF,bg:#1F2937,hl:#FBBF24
+            \ --color=fg+:#ffffff,bg+:#6B7280,hl+:#f57900
+            \ --color=info:#afaf87,prompt:#d7005f,pointer:#cc0000
+            \ --color=marker:#DB2777,spinner:#af5fff,header:#729fcf'
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --smart-case --color=never --ignore-case '.shellescape(<q-args>), 1,
