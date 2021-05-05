@@ -1,7 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export TYPE=cmc
+export TERM='xterm-256color'
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+export TYPE=-cmc
 # Path to your oh-my-zsh installation.
 export ZSH="/home/vthang/.oh-my-zsh"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#5f6577'
@@ -102,11 +104,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias bat="batcat"
+alias cat="bat"
 alias vi="nvim"
 alias gd="git diff"
 alias ga="git add ."
 alias gcmsg="git commit -m"
 alias pm="git push origin master"
 alias gs="git status"
+alias gco="git checkout"
+alias gpom="git pull origin master"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
