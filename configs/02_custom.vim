@@ -10,10 +10,7 @@ set hlsearch " Highlight search
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set updatetime=100
 set colorcolumn=100
-
 set list listchars=tab:▸\ ,eol:$,trail:·
-highlight SpecialKey ctermfg=red guifg=#ff0000
-highlight NonText guifg=#505050
 
 " Enable true colors support
 if (has("termguicolors"))
@@ -24,6 +21,17 @@ set termguicolors     " enable true colors support
 set background="dark
 set number
 colorscheme palenight
+
+function DefaultHighlight()
+  highlight ExtraWhitespace ctermbg=red guibg=red guifg=white
+  highlight SpecialKey ctermfg=red guifg=#ff0000
+  highlight NonText guifg=#565656
+  " Coc Highlight
+  highlight CocErrorLine guifg=#000000 guibg=#D25972
+  highlight CocWarningLine guifg=#000000 guibg=#CBAC62
+endfunction
+
+call DefaultHighlight()
 
 """"""""""""""""""""""""""""""""""""""""""" MAPPINGS
 
@@ -110,10 +118,6 @@ map <leader>fh :BTags<cr>
 set splitbelow
 set splitright
 
-" Settings for Coc
-hi CocErrorLine guifg=#000000 guibg=#D25972
-hi CocWarningLine guifg=#000000 guibg=#CBAC62
-
 function SetColorschemeForElixir()
   colorscheme base16-google-dark
   highlight NonText guifg=#333333
@@ -124,14 +128,18 @@ function SetColorschemeForJsTs()
   highlight NonText guifg=#565656
 endfunction
 
+function DefaultBuffEnterSetup()
+  call DefaultHighlight()
+endfunction
+
 " Use nested for avoiding bugs caused by vim-airlines
 autocmd BufEnter *.ex ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.exs ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.js* ++nested call SetColorschemeForJsTs()
 autocmd BufEnter *.ts* ++nested call SetColorschemeForJsTs()
+autocmd BufEnter * ++nested call DefaultBuffEnterSetup()
 
 " Highlight trailing character
 " https://vim.fandom.com/wiki/Highlight_unwanted_spaces
-highlight ExtraWhitespace ctermbg=red guibg=red guifg=white
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/

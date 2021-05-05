@@ -48,7 +48,7 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
 " Settings for NERDTree
-let NERDTreeIgnore = ['\.beam$', '_build', 'node_modules']
+let NERDTreeIgnore = ['\.beam$', '_build', 'node_modules', 'deps']
 let NERDTreeAutoDeleteBuffer = 1 " Auto delete buffer when files/folders are deleted by NERDTree
 let NERDTreeQuitOnOpen = 1 " Auto close NERDTree when open a file
 let NERDTreeMinimalUI = 1
