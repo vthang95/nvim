@@ -22,16 +22,20 @@ set background="dark
 set number
 colorscheme palenight
 
-function DefaultHighlight()
+function UnchangedHighlight()
   highlight ExtraWhitespace ctermbg=red guibg=red guifg=white
   highlight SpecialKey ctermfg=red guifg=#ff0000
-  highlight NonText guifg=#565656
   " Coc Highlight
   highlight CocErrorLine guifg=#000000 guibg=#D25972
   highlight CocWarningLine guifg=#000000 guibg=#CBAC62
 endfunction
 
+function DefaultHighlight()
+  highlight NonText guifg=#3e3e3e
+endfunction
+
 call DefaultHighlight()
+call UnchangedHighlight()
 
 """"""""""""""""""""""""""""""""""""""""""" MAPPINGS
 
@@ -86,7 +90,7 @@ vnoremap d "_d
 nnoremap xx dd
 nnoremap dd "_dd
 nnoremap fw dw
-noremap dw "_dw
+nnoremap dw "_dw
 
 " Move cursor faster
 map <S-j> 5j
@@ -125,11 +129,11 @@ endfunction
 
 function SetColorschemeForJsTs()
   colorscheme palenight
-  highlight NonText guifg=#565656
+  call DefaultHighlight()
 endfunction
 
 function DefaultBuffEnterSetup()
-  call DefaultHighlight()
+  call UnchangedHighlight()
 endfunction
 
 " Use nested for avoiding bugs caused by vim-airlines
@@ -137,6 +141,7 @@ autocmd BufEnter *.ex ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.exs ++nested call SetColorschemeForElixir()
 autocmd BufEnter *.js* ++nested call SetColorschemeForJsTs()
 autocmd BufEnter *.ts* ++nested call SetColorschemeForJsTs()
+autocmd BufEnter *.vue ++nested call SetColorschemeForJsTs()
 autocmd BufEnter * ++nested call DefaultBuffEnterSetup()
 
 " Highlight trailing character

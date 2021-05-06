@@ -96,3 +96,6 @@ autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " Settings for gutentags
 set statusline+=%{gutentags#statusline()}
+
+" Settings for auto-pairs
+let g:AutoPairsMultilineClose = 0
