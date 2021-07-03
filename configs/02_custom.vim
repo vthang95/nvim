@@ -10,8 +10,7 @@ set hlsearch " Highlight search
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set updatetime=100
 set colorcolumn=100
-set list listchars=tab:▸\ ,eol:$,trail:·
-
+set list listchars=tab:▸\ ,trail:·
 " Enable true colors support
 if (has("termguicolors"))
  set termguicolors
@@ -99,8 +98,8 @@ map <S-h> b
 map <S-l> w
 
 " Search in directory
-map <leader>ff :Files<space>
 map <leader>gf :GFiles<cr>
+map <leader>ff :Files<space>
 map <leader>gs :GFiles?<cr>
 map <leader>hh :History<cr>
 map <leader>ll :Lines<cr>
