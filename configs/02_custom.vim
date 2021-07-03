@@ -117,6 +117,9 @@ nnoremap <Tab> >>
 
 map <leader>fh :BTags<cr>
 
+vnoremap <leader>/ gc<ESC>
+map <leader>/ gcc<ESC>
+
 " Set terminals to split below and right
 set splitbelow
 set splitright
