@@ -18,6 +18,9 @@ Plug 'junegunn/fzf.vim', { 'depends': 'fzf' }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ervandew/supertab'
 Plug 'chriskempson/base16-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'mxw/vim-jsx'
 
 " Elixir plugs
 Plug 'elixir-editors/vim-elixir'
@@ -28,6 +31,9 @@ Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+
+" Dart/Flutter
+Plug 'dart-lang/dart-vim-plugin'
 
 call plug#end()
 
@@ -42,7 +48,7 @@ set hidden
 let g:Powerline_symbols = 'fancy'
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme='onedark'
+let g:airline_theme='onehalfdark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#show_buffers = 0
@@ -72,6 +78,7 @@ endif
 " Setup for ripgrep, fzf
 " To show preview in fashion way, you need to install bat - a cat alternative
 " programe
+let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs --glob "!{node_modules,build,package/*}"'
 let $FZF_DEFAULT_OPTS='
             \ --color=fg:#9CA3AF,bg:#1F2937,hl:#FBBF24
             \ --color=fg+:#ffffff,bg+:#6B7280,hl+:#f57900
@@ -80,7 +87,7 @@ let $FZF_DEFAULT_OPTS='
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --smart-case --color=never --ignore-case '.shellescape(<q-args>), 1,
+  \   'rg --glob "!{node_modules,_build,packages,tags.temp,tags.lock,client}" --column --line-number --no-heading --smart-case --color=never --ignore-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', 'ctrl-/'),
   \   <bang>0)

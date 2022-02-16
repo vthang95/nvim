@@ -19,7 +19,8 @@ endif
 set termguicolors     " enable true colors support
 set background="dark
 set number
-colorscheme palenight
+let ayucolor="mirage"
+colorscheme ayu
 
 function UnchangedHighlight()
   highlight ExtraWhitespace ctermbg=red guibg=red guifg=white
@@ -125,12 +126,13 @@ set splitbelow
 set splitright
 
 function SetColorschemeForElixir()
-  colorscheme base16-google-dark
+  " colorscheme base16-google-dark
+  colorscheme ayu
   highlight NonText guifg=#333333
 endfunction
 
 function SetColorschemeForJsTs()
-  colorscheme palenight
+  colorscheme ayu
   call DefaultHighlight()
 endfunction
 
